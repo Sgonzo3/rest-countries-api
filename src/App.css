@@ -1,38 +1,108 @@
+:root {
+  --dark-mode-elements: hsl(209, 23%, 22%);
+  --dark-mode-background: hsl(207, 26%, 17%);
+  --dark-mode-text: hsl(0, 0%, 100%);
+  --light-mode-elements: hsl(0, 0%, 100%);
+  --light-mode-background: hsl(0, 0%, 98%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  box-sizing: border-box;
+
+}
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--dark-mode-background);
   min-height: 100vh;
+  color:var(--dark-mode-text);
+  padding: 2rem;
+  /* width: 80v; */
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+}
+
+.theme-button {
+  height: 2rem;
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+  border-radius: 0.25rem;
+  border: none;
+  margin: auto 0 auto 0;
+}
+
+.country-list {
+  /* padding: 1rem; */
+  max-width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2rem 0rem;
+}
+
+.searchbar {
+  width: 60rem;
+  height: 2rem;
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+  border-radius: 0.25rem;
+  border: none;
+}
+
+.filter-dropdown {
+  height: 2rem;
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+  border-radius: 0.25rem;
+  border: none;
+}
+.filter-dropdown option {
+  height: 2rem;
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+  border-radius: 0.25rem;
+  border: none;
+}
+.country-grid {
+  /* width: 80vw; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.country-card {
+  border-radius: 1rem;
+  /* max-width: 20%; */
+  overflow: hidden;
+  /* min-width: 20rem; */
+  background-color: var(--dark-mode-elements);
+  /* height: 30rem; */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.country-flag-img {
+  object-fit:fill;
+  height: 40%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.country-details {
+  height: 60%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  padding: 0 2rem;
 }
