@@ -7,7 +7,9 @@ function CountryList(props) {
 
     const [regionData, setRegionData] = useState([]);
 
-
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredList, setFilteredList] = useState([]);
+    const [regionFilter, setRegionFilter] = useState("");
     useEffect(() => {
         const fetchCountries = async () => {
             await fetch('https://restcountries.com/v2/all')
@@ -23,14 +25,27 @@ function CountryList(props) {
         fetchCountries();
     }, []);
 
+    useEffect(() => {
+        setFilteredList(countryData.filter(country => country.name.toLowerCase().includes(searchTerm.toLowerCase()) && (!regionFilter || country.region.toLowerCase() === regionFilter)))
+    }, [countryData, searchTerm, regionFilter]);
+
+    const handleSearchInput = (event) => {
+        setSearchTerm(event.target.value);
+    }
+
+    const handleRegionSelect = (event) => {
+        setRegionFilter(event.target.value);
+    }
+
     return (
         <section className="country-list">
             <form className="controls" action="">
-                <input className="searchbar" type="text" name="" id="" placeholder="Search for a country..."/>
-                <select className="filter-dropdown" name="" id="" placeholder="Filter by Region">
-                    {
+                <input className="searchbar" onChange={handleSearchInput} type="text" name="" id="" placeholder="Search for a country..."/>
+                <select className="filter-dropdown" onChange={handleRegionSelect} name="" id="" placeholder="Filter by Region">
+                    <option value="">All</option>
+                    {   
                         regionData.length 
-                            ? regionData.map(region => <option>{region}</option>)
+                            ? regionData.map(region => <option value={region.toLowerCase()}>{region}</option>)
                             : <option>Loading...</option>
                     }
                 </select>
@@ -38,7 +53,7 @@ function CountryList(props) {
           <section className='country-grid'>
             {
                 countryData.length 
-                    ? countryData.map(country => <CountryCard country={country}/>)
+                    ? filteredList.map(country => <CountryCard country={country}/>)
                     : <>Loading...</>
             }
           </section>
