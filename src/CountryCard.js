@@ -3,7 +3,7 @@ import React from 'react';
 
 function CountryCard({country}) {
     return(
-        <article className="country-card">
+        <article className="country-card themed">
             <img className="country-flag-img" src={country?.flags?.png} alt={`${country?.name} flag`} />
             <section className='country-details'>
                 <h2>{country?.name}</h2>

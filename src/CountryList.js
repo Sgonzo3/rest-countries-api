@@ -40,13 +40,13 @@ function CountryList(props) {
     return (
         <section className="country-list">
             <form className="controls" action="">
-                <input className="searchbar" onChange={handleSearchInput} type="text" name="" id="" placeholder="Search for a country..."/>
-                <select className="filter-dropdown" onChange={handleRegionSelect} name="" id="" placeholder="Filter by Region">
-                    <option value="">All</option>
+                <input className="searchbar themed" onChange={handleSearchInput} type="text" name="" id="" placeholder="Search for a country..."/>
+                <select className="filter-dropdown themed" onChange={handleRegionSelect} name="" id="" placeholder="Filter by Region">
+                    <option className="filter-dropdown-option themed" value="">All</option>
                     {   
                         regionData.length 
-                            ? regionData.map(region => <option value={region.toLowerCase()}>{region}</option>)
-                            : <option>Loading...</option>
+                            ? regionData.map(region => <option className="filter-dropdown-option themed" value={region.toLowerCase()}>{region}</option>)
+                            : <option className="filter-dropdown-option themed">Loading...</option>
                     }
                 </select>
             </form>
@@ -54,7 +54,7 @@ function CountryList(props) {
             {
                 countryData.length 
                     ? filteredList.map(country => <CountryCard country={country}/>)
-                    : <>Loading...</>
+                    : <div className="loading-div">Loading...</div>
             }
           </section>
         </section>
